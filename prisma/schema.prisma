@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  profile       Profile?
+  analyses      Analysis[]
+  habits        Habit[]
+  progress      Progress[]
+  subscription  Subscription?
+}
+
+model Profile {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  age           Int?
+  gender        String?
+  height        Float?
+  weight        Float?
+  skinType      String?
+  hairType      String?
+  fitnessLevel  String?
+  goals         String[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Analysis {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  imageUrl      String
+  symmetry      Float
+  skinQuality   Float
+  eyeArea       Float
+  jawline       Float
+  hairline      Float
+  proportions   Float
+  overallScore  Float
+  suggestions   String[]
+
+  createdAt     DateTime  @default(now())
+}
+
+model Habit {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name          String
+  description   String?
+  completed     Boolean   @default(false)
+  date          DateTime  @default(now())
+  streak        Int       @default(0)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Progress {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  date          DateTime  @default(now())
+  weight        Float?
+  bodyFat       Float?
+  muscleMass    Float?
+  photoUrl      String?
+  notes         String?
+  score         Int?
+
+  createdAt     DateTime  @default(now())
+}
+
+model Subscription {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  stripeId      String    @unique
+  status        String    // active, canceled, expired
+  plan          String    // free, premium, pro
+  expiresAt     DateTime?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
