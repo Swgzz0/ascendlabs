@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import { Users, Award, Sparkles, Clock } from 'lucide-react'
