@@ -14,18 +14,22 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <div className="section-label">Premium Features</div>
-          <h2 className="section-title">Everything you need for the<br /><span className="gradient-text">ultimate transformation</span></h2>
-          <p className="section-subtitle mx-auto">Comprehensive tools designed to help you become the best version of yourself.</p>
+          <div className="section-badge">Premium Features</div>
+          <h2 className="section-title">
+            Everything you need for the<br /><span className="gradient-text">ultimate transformation</span>
+          </h2>
+          <p className="section-subtitle">
+            Comprehensive tools designed to help you become the best version of yourself.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -38,8 +42,8 @@ export default function Features() {
               transition={{ delay: index * 0.05, duration: 0.4 }}
               className="glass glass-hover p-8 rounded-2xl text-center"
             >
-              <div className="w-14 h-14 rounded-2xl bg-space-blue/10 flex items-center justify-center mx-auto mb-4">
-                <feature.icon className="w-7 h-7 text-space-blue" />
+              <div className="feature-icon">
+                <feature.icon />
               </div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>

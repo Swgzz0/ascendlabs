@@ -21,6 +21,7 @@ body {
 /* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 4px;
+  background: transparent;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -30,7 +31,7 @@ body {
   border-radius: 10px;
 }
 
-/* GLASS */
+/* GLASS CARD */
 .glass {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(20px);
@@ -47,7 +48,7 @@ body {
 
 /* GRADIENT TEXT */
 .gradient-text {
-  background: linear-gradient(135deg, #4A9EFF 0%, #6BB5FF 100%);
+  background: linear-gradient(135deg, #4A9EFF 0%, #7BB8FF 50%, #6BB5FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -57,13 +58,16 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, #4A9EFF, #6BB5FF);
   color: white;
-  padding: 14px 36px;
+  padding: 14px 40px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
@@ -74,28 +78,30 @@ body {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
-  padding: 14px 36px;
+  padding: 14px 40px;
   border-radius: 12px;
   font-weight: 500;
+  font-size: 1rem;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* SECTION LABELS */
-.section-label {
-  font-size: 0.75rem;
+/* SECTION */
+.section-badge {
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4A9EFF;
   margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -107,13 +113,37 @@ body {
   color: rgba(255, 255, 255, 0.45);
   max-width: 500px;
   line-height: 1.6;
+  margin: 0 auto;
 }
 
 /* DIVIDER */
-.divider {
+.divider-light {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
   margin: 0 auto;
+}
+
+/* FEATURE ICON */
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(74, 158, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+  transition: all 0.3s ease;
+}
+.feature-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #4A9EFF;
+}
+
+.glass-hover:hover .feature-icon {
+  background: rgba(74, 158, 255, 0.2);
+  transform: scale(1.05);
 }
 
 /* RESPONSIVE */
@@ -123,5 +153,9 @@ body {
   }
   .section-subtitle {
     font-size: 0.95rem;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 12px 28px;
+    font-size: 0.9rem;
   }
 }

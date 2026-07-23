@@ -10,10 +10,10 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="divider mb-16" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="py-16 px-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="divider-light mb-14" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -23,13 +23,13 @@ export default function Stats() {
               transition={{ delay: index * 0.08, duration: 0.4 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold gradient-text">{stat.value}</div>
-              <div className="text-gray-300 font-medium mt-1">{stat.label}</div>
+              <div className="text-5xl md:text-6xl font-bold gradient-text">{stat.value}</div>
+              <div className="text-white font-medium text-lg mt-1">{stat.label}</div>
               <div className="text-gray-500 text-sm">{stat.detail}</div>
             </motion.div>
           ))}
         </div>
-        <div className="divider mt-16" />
+        <div className="divider-light mt-14" />
       </div>
     </section>
   )
