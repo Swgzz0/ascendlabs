@@ -26,15 +26,16 @@ export default function Home() {
     resize()
     window.addEventListener('resize', resize)
 
-    const particles: any[] = []
+    const particles = []
     for (let i = 0; i < 80; i++) {
+      const alpha = Math.random() * 0.2 + 0.05
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 2 + 1,
         speedX: (Math.random() - 0.5) * 0.3,
         speedY: (Math.random() - 0.5) * 0.3,
-        color: gba(74, 158, 255, )
+        color: 'rgba(74, 158, 255, ' + alpha + ')'
       })
     }
 
@@ -96,7 +97,6 @@ export default function Home() {
             <span>ASCEND<span className="text-space-blue">LABS</span></span>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="#features" className="text-gray-500 hover:text-white text-sm transition">Features</Link>
             <Link href="#reviews" className="text-gray-500 hover:text-white text-sm transition">Reviews</Link>
@@ -108,13 +108,11 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </nav>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden glass p-6 rounded-2xl mt-4 space-y-4">
             <Link href="#features" className="block text-gray-400 hover:text-white" onClick={() => setIsMenuOpen(false)}>Features</Link>
