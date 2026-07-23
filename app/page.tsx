@@ -2,24 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { 
-  Sparkles, Camera, BarChart3, Calendar, Users2, Brain,
-  Star, ArrowRight, Menu, X
-} from 'lucide-react'
-
-interface Particle {
-  x: number
-  y: number
-  radius: number
-  speedX: number
-  speedY: number
-  color: string
-}
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Particles
   useEffect(() => {
@@ -28,23 +14,22 @@ export default function Home() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const resize = () => {
+    const resizeCanvas = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
-    resize()
-    window.addEventListener('resize', resize)
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
-    const particles: Particle[] = []
-    for (let i = 0; i < 80; i++) {
-      const alpha = Math.random() * 0.2 + 0.05
+    const particles: any[] = []
+    for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 2 + 1,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        color: 'rgba(74, 158, 255, ' + alpha + ')'
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        color: 'rgba(74, 158, 255, ' + (Math.random() * 0.3) + ')'
       })
     }
 
@@ -52,6 +37,7 @@ export default function Home() {
 
     function animate() {
       if (!ctx || !canvas) return
+      animationId = requestAnimationFrame(animate)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       for (const p of particles) {
         p.x += p.speedX
@@ -65,29 +51,28 @@ export default function Home() {
         ctx.fillStyle = p.color
         ctx.fill()
       }
-      animationId = requestAnimationFrame(animate)
     }
     animate()
 
     return () => {
-      window.removeEventListener('resize', resize)
+      window.removeEventListener('resize', resizeCanvas)
       if (animationId) cancelAnimationFrame(animationId)
     }
   }, [])
 
   const features = [
-    { icon: Camera, title: 'Face Analysis', desc: 'AI-powered analysis of facial symmetry, skin quality, and proportions.' },
-    { icon: BarChart3, title: 'Progress Tracking', desc: 'Track your transformation with photo comparisons and habit streaks.' },
-    { icon: Brain, title: 'Personalized Plans', desc: 'Get custom roadmaps for skincare, fitness, nutrition, and style.' },
-    { icon: Calendar, title: 'Habit Tracker', desc: 'Build daily habits with guided checklists for sleep, hydration, and exercise.' },
-    { icon: Users2, title: 'Community', desc: 'Connect with like-minded individuals and share your progress.' },
-    { icon: Sparkles, title: 'AI Coaching', desc: 'Premium AI coach providing personalized advice and motivation.' },
+    { icon: '🛡️', title: 'Face Analysis', desc: 'AI-powered analysis of facial symmetry, skin quality, and proportions.' },
+    { icon: '⚡', title: 'Progress Tracking', desc: 'Track your transformation with photo comparisons and habit streaks.' },
+    { icon: '🔒', title: 'Personalized Plans', desc: 'Get custom roadmaps for skincare, fitness, nutrition, and style.' },
+    { icon: '🔄', title: 'Habit Tracker', desc: 'Build daily habits with guided checklists for sleep, hydration, and exercise.' },
+    { icon: '🎮', title: 'Community', desc: 'Connect with like-minded individuals and share your progress.' },
+    { icon: '💎', title: 'AI Coaching', desc: 'Premium AI coach providing personalized advice and motivation.' },
   ]
 
   const reviews = [
-    { name: 'Alex Chen', handle: '@alexchen', text: 'The face analysis gave me insights I never considered before. My skincare routine is now 10x better.', rating: 5 },
-    { name: 'Sarah Johnson', handle: '@sarahj', text: 'My clients have seen remarkable results using this platform. The habit tracker is a game-changer.', rating: 5 },
-    { name: 'Marcus Rivera', handle: '@marcusr', text: 'Evidence-based advice with no fake promises. Exactly what the self-improvement space needs.', rating: 5 },
+    { name: 'Alex Chen', handle: '@alexchen', text: 'The face analysis gave me insights I never considered before. My skincare routine is now 10x better.', avatar: 'AC' },
+    { name: 'Sarah Johnson', handle: '@sarahj', text: 'My clients have seen remarkable results using this platform. The habit tracker is a game-changer.', avatar: 'SJ' },
+    { name: 'Marcus Rivera', handle: '@marcusr', text: 'Evidence-based advice with no fake promises. Exactly what the self-improvement space needs.', avatar: 'MR' },
   ]
 
   const faqs = [
@@ -99,199 +84,113 @@ export default function Home() {
 
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
+  const toggleFAQ = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index)
+  }
+
   return (
     <>
-      {/* Particles Canvas */}
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />
+      <canvas ref={canvasRef} id="particles" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="container">
         {/* NAVBAR */}
-        <nav className="py-6 flex justify-between items-center border-b border-white/5 flex-wrap gap-4">
-          <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold">
-            <Sparkles className="w-6 h-6 text-space-blue" />
-            <span>ASCEND<span className="text-space-blue">LABS</span></span>
-          </Link>
-
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="#features" className="text-gray-500 hover:text-white text-sm transition">Features</Link>
-            <Link href="#reviews" className="text-gray-500 hover:text-white text-sm transition">Reviews</Link>
-            <Link href="#faq" className="text-gray-500 hover:text-white text-sm transition">FAQ</Link>
-            <Link href="/analysis">
-              <button className="bg-space-blue text-black px-6 py-2 rounded-full text-sm font-bold hover:scale-105 transition">
-                Get Started
-              </button>
-            </Link>
+        <nav className="navbar">
+          <div className="logo"><span>✦</span> <span>ASCENDLABS</span></div>
+          <div className="nav-links">
+            <a href="#features">Features</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+            <Link href="/analysis" className="btn-glow">Start Analysis</Link>
           </div>
-
-          <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </nav>
 
-        {isMenuOpen && (
-          <div className="md:hidden glass p-6 rounded-2xl mt-4 space-y-4">
-            <Link href="#features" className="block text-gray-400 hover:text-white" onClick={() => setIsMenuOpen(false)}>Features</Link>
-            <Link href="#reviews" className="block text-gray-400 hover:text-white" onClick={() => setIsMenuOpen(false)}>Reviews</Link>
-            <Link href="#faq" className="block text-gray-400 hover:text-white" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
-            <Link href="/analysis" onClick={() => setIsMenuOpen(false)}>
-              <button className="w-full bg-space-blue text-black px-6 py-3 rounded-full font-bold">Get Started</button>
-            </Link>
-          </div>
-        )}
-
         {/* HERO */}
-        <section className="py-16 md:py-24 text-center">
-          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm mb-6">
-            <Sparkles className="w-4 h-4 text-space-blue" />
-            <span className="text-gray-400">AI-Powered Self-Improvement</span>
-          </div>
-
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight">
-            <span className="gradient-text">Ascend</span>
-            <span className="text-white ml-2">Labs</span>
-          </h1>
-
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed mt-4">
-            The <span className="text-white font-medium">evidence-based</span> self-improvement platform.<br />
+        <section className="hero">
+          <div className="bolt">✦</div>
+          <h1 className="fade-up"><span>Ascend</span>Labs</h1>
+          <p className="fade-up tagline">
+            The <strong>evidence-based</strong> self-improvement platform. <br />
             Zero gimmicks. Maximum results. Complete transformation.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link href="/analysis">
-              <button className="bg-space-blue text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition inline-flex items-center gap-2">
-                Start Analysis <ArrowRight className="w-4 h-4" />
-              </button>
-            </Link>
-            <Link href="#features">
-              <button className="border border-white/20 text-white px-8 py-3 rounded-full font-medium hover:border-space-blue hover:text-space-blue transition">
-                Learn More
-              </button>
-            </Link>
+          <div className="hero-buttons fade-up">
+            <Link href="/analysis" className="btn-glow">Start Analysis →</Link>
+            <a href="#features" className="btn-outline">Learn More</a>
           </div>
         </section>
 
         {/* STATS */}
-        <div className="border-y border-white/5 py-10 my-4 flex justify-center gap-12 md:gap-20 flex-wrap">
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black gradient-text">99.9%</div>
-            <div className="text-white font-medium">Uptime</div>
-            <div className="text-gray-500 text-sm">Reliability</div>
+        <div className="stats-bar">
+          <div className="stat-item">
+            <div className="stat-number">99.9%</div>
+            <div className="stat-label">Uptime</div>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black gradient-text">2,847</div>
-            <div className="text-white font-medium">Active Users</div>
-            <div className="text-gray-500 text-sm">Growing daily</div>
+          <div className="stat-item">
+            <div className="stat-number" id="userCount">2,847</div>
+            <div className="stat-label">Active Users</div>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-black gradient-text">100%</div>
-            <div className="text-white font-medium">Privacy</div>
-            <div className="text-gray-500 text-sm">Your data is safe</div>
+          <div className="stat-item">
+            <div className="stat-number">100%</div>
+            <div className="stat-label">Privacy</div>
           </div>
         </div>
 
         {/* FEATURES */}
-        <section id="features" className="py-20">
-          <div className="text-center mb-12">
-            <div className="text-space-blue text-sm font-bold tracking-widest uppercase">Premium Features</div>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">
-              Everything you need for the<br /><span className="gradient-text">ultimate transformation</span>
-            </h2>
-            <p className="text-gray-500 max-w-lg mx-auto mt-3">
-              Comprehensive tools designed to help you become the best version of yourself.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section id="features">
+          <h2 className="section-title">Premium Features</h2>
+          <p className="section-subtitle">Everything you need for the ultimate transformation</p>
+          <div className="features-grid">
             {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="glass p-8 rounded-2xl text-center hover:border-space-blue/30 transition-all hover:-translate-y-1"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-space-blue/10 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="w-7 h-7 text-space-blue" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-              </motion.div>
+              <div key={i} className="feature-card">
+                <div className="feature-icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p>{feature.desc}</p>
+              </div>
             ))}
           </div>
         </section>
 
         {/* REVIEWS */}
-        <section id="reviews" className="py-20 border-t border-white/5">
-          <div className="text-center mb-12">
-            <div className="text-space-blue text-sm font-bold tracking-widest uppercase">Testimonials</div>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">
-              What our <span className="gradient-text">community</span> says
-            </h2>
-            <p className="text-gray-500 max-w-lg mx-auto mt-3">Real stories from real people on their journey.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <section id="reviews">
+          <h2 className="section-title">What Our Community Says</h2>
+          <p className="section-subtitle">Trusted by thousands of users worldwide</p>
+          <div className="reviews-grid">
             {reviews.map((review, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="glass p-6 rounded-2xl"
-              >
-                <div className="flex gap-1 mb-3">
-                  {[...Array(review.rating)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-space-blue text-space-blue" />
-                  ))}
+              <div key={i} className="review-card">
+                <div className="stars">✦✦✦✦✦</div>
+                <div className="review-text">&quot;{review.text}&quot;</div>
+                <div className="reviewer">
+                  <div className="avatar">{review.avatar}</div>
+                  <div>
+                    <div className="name">{review.name}</div>
+                    <div className="handle">{review.handle}</div>
+                  </div>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">&quot;{review.text}&quot;</p>
-                <div className="mt-4">
-                  <div className="font-semibold text-sm">{review.name}</div>
-                  <div className="text-gray-500 text-xs">{review.handle}</div>
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="py-20 border-t border-white/5">
-          <div className="text-center mb-12">
-            <div className="text-space-blue text-sm font-bold tracking-widest uppercase">FAQ</div>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">
-              Frequently Asked <span className="gradient-text">Questions</span>
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-3">
+        <section id="faq">
+          <h2 className="section-title">Frequently Asked Questions</h2>
+          <p className="section-subtitle">Everything you need to know about AscendLabs</p>
+          <div className="faq-grid">
             {faqs.map((faq, i) => (
-              <div key={i} className="glass rounded-2xl overflow-hidden border border-white/5">
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/5 transition"
-                >
-                  <span className="font-medium">{faq.q}</span>
-                  <span className="text-space-blue text-xl">{openFaq === i ? '−' : '+'}</span>
-                </button>
-                {openFaq === i && (
-                  <div className="px-6 pb-4">
-                    <p className="text-gray-400 text-sm">{faq.a}</p>
-                  </div>
-                )}
+              <div key={i} className="faq-item">
+                <div className="faq-q" onClick={() => toggleFAQ(i)}>
+                  {faq.q}
+                  <span>{openFaq === i ? '−' : '+'}</span>
+                </div>
+                <div className={'faq-a' + (openFaq === i ? ' open' : '')}>{faq.a}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* FOOTER */}
-        <footer className="border-t border-white/5 py-8 text-center text-gray-500 text-sm">
-          <p className="flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4 text-space-blue" />
-            AscendLabs — The Evidence-Based Self-Improvement Platform
-          </p>
-          <p className="mt-2">© {new Date().getFullYear()} AscendLabs. All rights reserved.</p>
+        <footer className="footer">
+          <p>✦ AscendLabs — The Evidence-Based Self-Improvement Platform ✦</p>
+          <p style={{ marginTop: '10px' }}>© {new Date().getFullYear()} AscendLabs. All rights reserved.</p>
         </footer>
       </div>
     </>
