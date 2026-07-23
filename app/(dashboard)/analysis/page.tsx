@@ -1,18 +1,15 @@
 ﻿'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { Upload, Camera, Sparkles, Shield, CheckCircle2 } from 'lucide-react'
 
 export default function AnalysisPage() {
-  const [uploaded, setUploaded] = useState(false)
   const [analyzing, setAnalyzing] = useState(false)
   const [results, setResults] = useState<any>(null)
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      setUploaded(true)
       setAnalyzing(true)
       setTimeout(() => {
         setAnalyzing(false)
@@ -36,129 +33,105 @@ export default function AnalysisPage() {
   }
 
   return (
-    <div className="container py-16">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '16px' }}>
           AI Face <span style={{ color: '#4A9EFF' }}>Analysis</span>
         </h1>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        <p style={{ color: '#888', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto' }}>
           Upload a clear photo for comprehensive analysis of facial symmetry, skin quality, and proportions.
         </p>
       </div>
 
       {!results && !analyzing && (
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto bg-white/5 rounded-3xl p-12 text-center border-2 border-dashed border-white/10 hover:border-space-blue/30 transition-colors"
-        >
-          <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 rounded-full bg-space-blue/10 flex items-center justify-center">
-              <Camera className="w-10 h-10 text-space-blue" />
+        <div style={{ maxWidth: '600px', margin: '0 auto', background: 'rgba(255,255,255,0.03)', borderRadius: '24px', padding: '48px', textAlign: 'center', border: '2px dashed rgba(255,255,255,0.1)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(74,158,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Camera style={{ width: '40px', height: '40px', color: '#4A9EFF' }} />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Upload your photo</h3>
-              <p className="text-gray-400 text-sm">JPG, PNG or WebP (max 10MB)</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>Upload your photo</h3>
+              <p style={{ color: '#888', fontSize: '0.9rem' }}>JPG, PNG or WebP (max 10MB)</p>
             </div>
-            <label className="bg-space-blue text-black px-8 py-3 rounded-full font-bold cursor-pointer hover:scale-105 transition inline-flex items-center gap-2">
-              <Upload className="w-5 h-5" />
+            <label style={{ background: '#4A9EFF', color: '#000', padding: '12px 32px', borderRadius: '40px', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'transform 0.2s' }}>
+              <Upload style={{ width: '20px', height: '20px' }} />
               Choose Photo
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleUpload}
-              />
+              <input type="file" accept="image/*" className="hidden" onChange={handleUpload} style={{ display: 'none' }} />
             </label>
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <Shield className="w-4 h-4" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', color: '#666' }}>
+              <Shield style={{ width: '16px', height: '16px' }} />
               <span>Your images are encrypted and not stored permanently</span>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {analyzing && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="max-w-2xl mx-auto bg-white/5 rounded-3xl p-12 text-center"
-        >
-          <div className="flex flex-col items-center gap-6">
-            <div className="relative">
-              <div className="w-20 h-20 rounded-full border-4 border-space-blue/20 border-t-space-blue animate-spin" />
-              <Sparkles className="w-8 h-8 text-space-blue absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+        <div style={{ maxWidth: '600px', margin: '0 auto', background: 'rgba(255,255,255,0.03)', borderRadius: '24px', padding: '48px', textAlign: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+            <div style={{ position: 'relative' }}>
+              <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '4px solid rgba(74,158,255,0.2)', borderTopColor: '#4A9EFF', animation: 'spin 1s linear infinite' }} />
+              <Sparkles style={{ width: '32px', height: '32px', color: '#4A9EFF', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Analyzing your photo</h3>
-              <p className="text-gray-400 text-sm">Our AI is scanning for symmetry, skin quality, and more...</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>Analyzing your photo</h3>
+              <p style={{ color: '#888', fontSize: '0.9rem' }}>Our AI is scanning for symmetry, skin quality, and more...</p>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {results && (
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto space-y-6"
-        >
-          <div className="bg-white/5 rounded-3xl p-8">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold">Analysis Results</h3>
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-space-blue" />
-                <span className="text-3xl font-bold" style={{ color: '#4A9EFF' }}>{results.overall}</span>
-                <span className="text-gray-400">/100</span>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '24px', padding: '32px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Analysis Results</h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Sparkles style={{ width: '20px', height: '20px', color: '#4A9EFF' }} />
+                <span style={{ fontSize: '2rem', fontWeight: 'bold', color: '#4A9EFF' }}>{results.overall}</span>
+                <span style={{ color: '#666' }}>/100</span>
               </div>
             </div>
 
-            <div className="space-y-4">
-              {[
-                { label: 'Facial Symmetry', value: results.symmetry },
-                { label: 'Skin Quality', value: results.skinQuality },
-                { label: 'Eye Area', value: results.eyeArea },
-                { label: 'Jawline Definition', value: results.jawline },
-                { label: 'Hairline', value: results.hairline },
-                { label: 'Facial Proportions', value: results.proportions },
-              ].map((item, index) => (
-                <div key={index}>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>{item.label}</span>
-                    <span style={{ color: '#4A9EFF' }}>{item.value}%</span>
-                  </div>
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-space-blue to-space-light rounded-full transition-all duration-1000"
-                      style={{ width: ${item.value}% }}
-                    />
-                  </div>
+            {[
+              { label: 'Facial Symmetry', value: results.symmetry },
+              { label: 'Skin Quality', value: results.skinQuality },
+              { label: 'Eye Area', value: results.eyeArea },
+              { label: 'Jawline Definition', value: results.jawline },
+              { label: 'Hairline', value: results.hairline },
+              { label: 'Facial Proportions', value: results.proportions },
+            ].map((item, index) => (
+              <div key={index} style={{ marginBottom: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '4px' }}>
+                  <span>{item.label}</span>
+                  <span style={{ color: '#4A9EFF' }}>{item.value}%</span>
                 </div>
-              ))}
-            </div>
+                <div style={{ width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
+                  <div style={{ height: '100%', background: 'linear-gradient(90deg, #4A9EFF, #6BB5FF)', borderRadius: '4px', width: ${item.value}%, transition: 'width 1s' }} />
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="bg-white/5 rounded-3xl p-8">
-            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-space-blue" />
+          <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '24px', padding: '32px', marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkles style={{ width: '20px', height: '20px', color: '#4A9EFF' }} />
               Improvement Suggestions
             </h3>
-            <ul className="space-y-2">
+            <ul style={{ listStyle: 'none', padding: 0 }}>
               {results.suggestions.map((suggestion: string, index: number) => (
-                <li key={index} className="flex items-start gap-3 text-sm text-gray-300">
-                  <CheckCircle2 className="w-4 h-4 text-space-blue mt-0.5 flex-shrink-0" />
+                <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '8px', color: '#aaa', fontSize: '0.9rem' }}>
+                  <CheckCircle2 style={{ width: '16px', height: '16px', color: '#4A9EFF', marginTop: '2px', flexShrink: 0 }} />
                   <span>{suggestion}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <button className="w-full bg-space-blue text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition text-lg">
+          <button style={{ width: '100%', background: '#4A9EFF', color: '#000', padding: '16px', borderRadius: '40px', fontWeight: 'bold', fontSize: '1.1rem', border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }}>
             Generate Personalized Plan
           </button>
-        </motion.div>
+        </div>
       )}
     </div>
   )
