@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { motion } from 'framer-motion'
-import { Users, Award, Sparkles, Clock, TrendingUp, Star } from 'lucide-react'
+import { Users, Award, Sparkles, TrendingUp } from 'lucide-react'
 
 const stats = [
   { icon: Users, value: '10,000+', label: 'Active Users', change: '+22%' },
@@ -12,26 +12,27 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="py-20 px-6">
+    <section className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="divider-gradient mb-16" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="section-divider mb-20" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="glass p-8 rounded-2xl text-center group hover:border-space-blue/10 transition-all"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              className="glass p-8 rounded-2xl text-center"
             >
-              <stat.icon className="w-8 h-8 text-space-blue mx-auto mb-3 opacity-60 group-hover:opacity-100 transition-opacity" />
-              <div className="text-4xl font-bold gradient-text mb-1">{stat.value}</div>
+              <stat.icon className="w-7 h-7 text-space-blue mx-auto mb-3 opacity-60" />
+              <div className="text-3xl font-bold gradient-text mb-1">{stat.value}</div>
               <div className="text-gray-400 text-sm">{stat.label}</div>
-              <div className="text-xs text-green-400/60 mt-2">{stat.change}</div>
+              <div className="text-xs text-emerald-400/70 mt-2">{stat.change}</div>
             </motion.div>
           ))}
         </div>
-        <div className="divider-gradient mt-16" />
+        <div className="section-divider mt-20" />
       </div>
     </section>
   )
