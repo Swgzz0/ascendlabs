@@ -1,6 +1,7 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { 
   TrendingUp, 
   Award, 
@@ -84,9 +85,7 @@ export default function DashboardPage() {
                 className="flex items-center justify-between p-3 glass rounded-xl hover:border-space-blue/30 transition-colors"
               >
                 <span className="text-sm">{habit.habit}</span>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                  habit.done ? 'bg-green-500/20 text-green-400' : 'bg-gray-700/30 text-gray-500'
-                }`}>
+                <div className={'w-6 h-6 rounded-full flex items-center justify-center ' + (habit.done ? 'bg-green-500/20 text-green-400' : 'bg-gray-700/30 text-gray-500')}>
                   {habit.done && <CheckCircle2 className="w-4 h-4" />}
                 </div>
               </div>
