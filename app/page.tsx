@@ -1,5 +1,4 @@
-@"
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import Hero from './components/home/Hero'
@@ -26,4 +25,3 @@ export default function Home() {
     </motion.div>
   )
 }
-"@ | Out-File -FilePath "app/page.tsx" -Encoding UTF8 -Force

@@ -1,21 +1,9 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { Sparkles, Twitter, Youtube, Instagram, Github } from 'lucide-react'
 
-const footerLinks = {
-  Product: ['Analysis', 'Dashboard', 'Guides', 'Pricing'],
-  Company: ['About', 'Blog', 'Careers', 'Contact'],
-  Resources: ['Help Center', 'Community', 'Privacy Policy', 'Terms of Service'],
-  Social: [
-    { icon: Twitter, href: '#' },
-    { icon: Youtube, href: '#' },
-    { icon: Instagram, href: '#' },
-    { icon: Github, href: '#' },
-  ],
-}
-
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="border-t border-white/5 py-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -32,36 +20,39 @@ export function Footer() {
             </p>
           </div>
 
-          {Object.entries(footerLinks).map(([title, links]) => {
-            if (title === 'Social') return null
-            return (
-              <div key={title}>
-                <h4 className="font-semibold mb-4">{title}</h4>
-                <ul className="space-y-3">
-                  {(links as string[]).map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                        {link}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
+          <div>
+            <h4 className="font-semibold mb-4">Product</h4>
+            <ul className="space-y-3">
+              <li><Link href="/analysis" className="text-sm text-gray-400 hover:text-white transition-colors">Analysis</Link></li>
+              <li><Link href="/dashboard" className="text-sm text-gray-400 hover:text-white transition-colors">Dashboard</Link></li>
+              <li><Link href="/pricing" className="text-sm text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-3">
+              <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">About</Link></li>
+              <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+            </ul>
+          </div>
 
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex gap-4">
-              {footerLinks.Social.map((social, index) => (
-                <Link
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:border-space-blue/50 transition-colors"
-                >
-                  <social.icon className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
-                </Link>
-              ))}
+              <a href="#" className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:border-space-blue/50 transition-colors">
+                <Twitter className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:border-space-blue/50 transition-colors">
+                <Youtube className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:border-space-blue/50 transition-colors">
+                <Instagram className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:border-space-blue/50 transition-colors">
+                <Github className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+              </a>
             </div>
           </div>
         </div>
