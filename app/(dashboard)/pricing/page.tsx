@@ -4,9 +4,30 @@ import { motion } from 'framer-motion'
 import { Check, Sparkles, Crown } from 'lucide-react'
 
 const plans = [
-  { name: 'Free', price: '', description: 'Start your journey', features: ['Basic face analysis (1x)', '5 habit tracking', 'Basic guides access', 'Community access'], popular: false },
-  { name: 'Premium', price: '.99', description: 'Unlock full potential', features: ['Unlimited face analysis', 'Unlimited habit tracking', 'All guides access', 'Personalized plans', 'Progress tracking', 'AI coaching', 'Priority support'], popular: true },
-  { name: 'Pro', price: '.99', description: 'Maximum optimization', features: ['Everything in Premium', 'Advanced AI analysis', 'Custom plan creation', 'Group sessions', '1-on-1 coach calls', 'Exclusive community', 'Early access features'], popular: false }
+  { 
+    name: 'Free', 
+    price: '', 
+    description: 'Start your journey', 
+    features: ['Basic face analysis (1x)', '5 habit tracking', 'Basic guides access', 'Community access'], 
+    popular: false,
+    cta: 'Get Started'
+  },
+  { 
+    name: 'Premium', 
+    price: '.99', 
+    description: 'Unlock full potential', 
+    features: ['Unlimited face analysis', 'Unlimited habit tracking', 'All guides access', 'Personalized plans', 'Progress tracking', 'AI coaching', 'Priority support'], 
+    popular: true,
+    cta: 'Start Premium'
+  },
+  { 
+    name: 'Pro', 
+    price: '.99', 
+    description: 'Maximum optimization', 
+    features: ['Everything in Premium', 'Advanced AI analysis', 'Custom plan creation', 'Group sessions', '1-on-1 coach calls', 'Exclusive community', 'Early access features'], 
+    popular: false,
+    cta: 'Go Pro'
+  }
 ]
 
 export default function PricingPage() {
@@ -40,7 +61,7 @@ export default function PricingPage() {
               ))}
             </ul>
             <button className={'w-full ' + (plan.popular ? 'btn-primary' : 'btn-secondary') + ' text-sm px-6 py-3 rounded-xl'}>
-              {plan.cta || 'Get Started'}
+              {plan.cta}
             </button>
           </div>
         ))}
