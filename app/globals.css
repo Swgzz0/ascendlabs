@@ -20,144 +20,108 @@ body {
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
-  width: 6px;
-  background: transparent;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #4A9EFF, #6BB5FF);
+  background: #4A9EFF;
   border-radius: 10px;
 }
 
-/* GLASS EFFECTS */
+/* GLASS */
 .glass {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  transition: all 0.3s ease;
 }
 
-.glass-hover {
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 .glass-hover:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-6px);
-  box-shadow: 0 24px 80px rgba(74, 158, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
 }
 
 /* GRADIENT TEXT */
 .gradient-text {
-  background: linear-gradient(135deg, #4A9EFF 0%, #7BB8FF 40%, #A8D4FF 70%, #6BB5FF 100%);
+  background: linear-gradient(135deg, #4A9EFF 0%, #6BB5FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 200%;
-  animation: gradientShift 4s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* BUTTONS */
 .btn-primary {
   background: linear-gradient(135deg, #4A9EFF, #6BB5FF);
   color: white;
-  padding: 16px 40px;
-  border-radius: 14px;
+  padding: 14px 36px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 30px rgba(74, 158, 255, 0.25);
 }
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 50px rgba(74, 158, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3);
 }
 
 .btn-secondary {
   background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
-  padding: 16px 40px;
-  border-radius: 14px;
-  font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* SECTION LABELS */
-.section-badge {
-  display: inline-block;
-  padding: 6px 20px;
-  background: rgba(74, 158, 255, 0.1);
-  border: 1px solid rgba(74, 158, 255, 0.12);
-  border-radius: 100px;
-  font-size: 0.7rem;
+.section-label {
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #4A9EFF;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 16px;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 
 .section-subtitle {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.5);
-  max-width: 560px;
-  line-height: 1.7;
-  font-weight: 300;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 500px;
+  line-height: 1.6;
 }
 
 /* DIVIDER */
-.section-divider {
+.divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.15), rgba(74, 158, 255, 0.3), rgba(74, 158, 255, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
   margin: 0 auto;
-}
-
-/* HERO */
-.hero-gradient {
-  background: radial-gradient(ellipse at 20% 50%, rgba(74, 158, 255, 0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 50%, rgba(74, 158, 255, 0.05) 0%, transparent 60%),
-              #0A0A0A;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .section-subtitle {
-    font-size: 1rem;
-  }
-  .btn-primary, .btn-secondary {
-    padding: 14px 28px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
