@@ -20,3 +20,5 @@ Thumbs.db
 *.swp
 .cache/
 .vercel/
+.vercel
+.env*
