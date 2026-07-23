@@ -48,8 +48,10 @@ export default function Home() {
       })
     }
 
+    let animationId: number
+
     function animate() {
-      requestAnimationFrame(animate)
+      if (!ctx || !canvas) return
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       for (const p of particles) {
         p.x += p.speedX
@@ -63,10 +65,14 @@ export default function Home() {
         ctx.fillStyle = p.color
         ctx.fill()
       }
+      animationId = requestAnimationFrame(animate)
     }
     animate()
 
-    return () => window.removeEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('resize', resize)
+      if (animationId) cancelAnimationFrame(animationId)
+    }
   }, [])
 
   const features = [
