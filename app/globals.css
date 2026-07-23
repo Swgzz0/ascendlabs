@@ -250,3 +250,14 @@ body {
   .stats-bar { gap: 30px; }
   .stat-number { font-size: 28px; }
 }
+/* ... existing CSS ... */
+
+/* Hide caret browsing popup */
+[role=dialog] {
+  display: none !important;
+}
+
+/* Or if it's a specific element */
+#caret-browsing-prompt {
+  display: none !important;
+}

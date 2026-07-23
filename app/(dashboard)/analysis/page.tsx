@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -14,7 +14,6 @@ export default function AnalysisPage() {
     if (file) {
       setUploaded(true)
       setAnalyzing(true)
-      // Simulate AI analysis
       setTimeout(() => {
         setAnalyzing(false)
         setResults({
@@ -37,28 +36,22 @@ export default function AnalysisPage() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="max-w-4xl mx-auto px-6 py-12"
-    >
+    <div className="container py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-          AI Face <span className="gradient-text">Analysis</span>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          AI Face <span style={{ color: '#4A9EFF' }}>Analysis</span>
         </h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Upload a clear photo for comprehensive analysis of facial symmetry, skin quality, and proportions.
         </p>
       </div>
 
-      {/* Upload Section */}
       {!results && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="glass rounded-3xl p-12 text-center border-2 border-dashed border-white/10 hover:border-space-blue/30 transition-colors"
+          className="max-w-2xl mx-auto bg-white/5 rounded-3xl p-12 text-center border-2 border-dashed border-white/10 hover:border-space-blue/30 transition-colors"
         >
           <div className="flex flex-col items-center gap-6">
             <div className="w-20 h-20 rounded-full bg-space-blue/10 flex items-center justify-center">
@@ -68,7 +61,7 @@ export default function AnalysisPage() {
               <h3 className="text-xl font-semibold mb-2">Upload your photo</h3>
               <p className="text-gray-400 text-sm">JPG, PNG or WebP (max 10MB)</p>
             </div>
-            <label className="btn-primary cursor-pointer flex items-center gap-2">
+            <label className="bg-space-blue text-black px-8 py-3 rounded-full font-bold cursor-pointer hover:scale-105 transition inline-flex items-center gap-2">
               <Upload className="w-5 h-5" />
               Choose Photo
               <input
@@ -86,12 +79,11 @@ export default function AnalysisPage() {
         </motion.div>
       )}
 
-      {/* Analysis in Progress */}
       {analyzing && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="glass rounded-3xl p-12 text-center"
+          className="max-w-2xl mx-auto bg-white/5 rounded-3xl p-12 text-center"
         >
           <div className="flex flex-col items-center gap-6">
             <div className="relative">
@@ -106,20 +98,19 @@ export default function AnalysisPage() {
         </motion.div>
       )}
 
-      {/* Results */}
       {results && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-6"
+          className="max-w-3xl mx-auto space-y-6"
         >
-          <div className="glass rounded-3xl p-8">
+          <div className="bg-white/5 rounded-3xl p-8">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold">Analysis Results</h3>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-space-blue" />
-                <span className="text-3xl font-bold gradient-text">{results.overall}</span>
+                <span className="text-3xl font-bold" style={{ color: '#4A9EFF' }}>{results.overall}</span>
                 <span className="text-gray-400">/100</span>
               </div>
             </div>
@@ -136,12 +127,12 @@ export default function AnalysisPage() {
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-1">
                     <span>{item.label}</span>
-                    <span className="text-space-blue">{item.value}%</span>
+                    <span style={{ color: '#4A9EFF' }}>{item.value}%</span>
                   </div>
                   <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-space-blue to-space-light rounded-full transition-all duration-1000"
-                      style={{ width: `${item.value}%` }}
+                      style={{ width: ${item.value}% }}
                     />
                   </div>
                 </div>
@@ -149,7 +140,7 @@ export default function AnalysisPage() {
             </div>
           </div>
 
-          <div className="glass rounded-3xl p-8">
+          <div className="bg-white/5 rounded-3xl p-8">
             <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-space-blue" />
               Improvement Suggestions
@@ -164,11 +155,11 @@ export default function AnalysisPage() {
             </ul>
           </div>
 
-          <button className="btn-primary w-full py-4 text-lg">
+          <button className="w-full bg-space-blue text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition text-lg">
             Generate Personalized Plan
           </button>
         </motion.div>
       )}
-    </motion.div>
+    </div>
   )
 }
