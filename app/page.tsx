@@ -8,6 +8,15 @@ import {
   Star, ArrowRight, Menu, X
 } from 'lucide-react'
 
+interface Particle {
+  x: number
+  y: number
+  radius: number
+  speedX: number
+  speedY: number
+  color: string
+}
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -26,7 +35,7 @@ export default function Home() {
     resize()
     window.addEventListener('resize', resize)
 
-    const particles = []
+    const particles: Particle[] = []
     for (let i = 0; i < 80; i++) {
       const alpha = Math.random() * 0.2 + 0.05
       particles.push({
