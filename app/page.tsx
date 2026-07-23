@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { 
   Sparkles, Camera, BarChart3, Calendar, Users2, Brain,
-  Shield, Zap, Star, Check, ArrowRight, Menu, X
+  Star, ArrowRight, Menu, X
 } from 'lucide-react'
 
 export default function Home() {
