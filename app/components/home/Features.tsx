@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { Camera, BarChart3, Calendar, Users2, Sparkles, Brain } from 'lucide-react'

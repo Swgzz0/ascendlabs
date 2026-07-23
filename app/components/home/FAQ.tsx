@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
-  { question: 'Is AscendLabs free to use?', answer: 'AscendLabs offers a free tier with basic analysis and limited guides. Premium membership unlocks unlimited analyses, detailed reports, AI coaching, and custom plans starting at $9.99/month.' },
+  { question: 'Is AscendLabs free to use?', answer: 'AscendLabs offers a free tier with basic analysis and limited guides. Premium membership unlocks unlimited analyses, detailed reports, AI coaching, and custom plans starting at .99/month.' },
   { question: 'How does the face analysis work?', answer: 'Our AI analyzes uploaded photos for facial symmetry, skin quality, eye area, jawline definition, hairline, and facial proportions. The analysis provides scores, confidence metrics, and actionable improvement suggestions based on scientific research.' },
   { question: 'Is my data secure?', answer: 'Absolutely. All images are encrypted and not stored permanently. Your data is private and never shared with third parties. We prioritize your privacy and security.' },
   { question: 'How long does it take to see results?', answer: 'Results vary based on consistency and individual factors. Most users notice improvements within 4-8 weeks of following their personalized plan. Remember, self-improvement is a journey, not a destination.' },
