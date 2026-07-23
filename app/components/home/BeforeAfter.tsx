@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 
@@ -7,7 +7,7 @@ const transformations = [
   { before: 'https://via.placeholder.com/400x400/1a1a1a/4A9EFF?text=Before', after: 'https://via.placeholder.com/400x400/1a1a1a/6BB5FF?text=After', title: 'Skin Quality Transformation', description: 'Reduced blemishes and improved skin texture over 90 days.' },
 ]
 
-export function BeforeAfter() {
+export default function BeforeAfter() {
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">

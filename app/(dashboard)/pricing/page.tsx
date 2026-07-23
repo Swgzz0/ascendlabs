@@ -68,11 +68,8 @@ export default function PricingPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {plans.map((plan, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
             className={glass glass-hover p-8 rounded-2xl text-center relative }
           >
             {plan.popular && (
@@ -108,7 +105,7 @@ export default function PricingPage() {
             <button className={w-full  text-sm px-6 py-3 rounded-xl}>
               {plan.cta || 'Get Started'}
             </button>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

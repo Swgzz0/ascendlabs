@@ -1,12 +1,13 @@
-﻿'use client'
+@"
+'use client'
 
 import { motion } from 'framer-motion'
-import { Hero } from './components/home/Hero'
-import { Stats } from './components/home/Stats'
-import { Features } from './components/home/Features'
-import { Testimonials } from './components/home/Testimonials'
-import { BeforeAfter } from './components/home/BeforeAfter'
-import { FAQ } from './components/home/FAQ'
+import Hero from './components/home/Hero'
+import Stats from './components/home/Stats'
+import Features from './components/home/Features'
+import Testimonials from './components/home/Testimonials'
+import BeforeAfter from './components/home/BeforeAfter'
+import FAQ from './components/home/FAQ'
 
 export default function Home() {
   return (
@@ -25,3 +26,4 @@ export default function Home() {
     </motion.div>
   )
 }
+"@ | Out-File -FilePath "app/page.tsx" -Encoding UTF8 -Force

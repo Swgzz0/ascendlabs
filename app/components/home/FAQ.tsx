@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,7 +12,7 @@ const faqs = [
   { question: 'What makes AscendLabs different?', answer: 'AscendLabs combines AI technology with evidence-based advice, focusing on holistic improvement across appearance, health, confidence, and lifestyle. We provide actionable, realistic guidance without unrealistic promises.' },
 ]
 
-export function FAQ() {
+export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (

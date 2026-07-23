@@ -1,10 +1,10 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
 
-export function Hero() {
+export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden hero-gradient">
       <div className="absolute inset-0">

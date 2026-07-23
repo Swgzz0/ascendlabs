@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import { Camera, BarChart3, Calendar, Users2, Sparkles, Brain } from 'lucide-react'
@@ -12,7 +12,7 @@ const features = [
   { icon: Sparkles, title: 'AI Coaching', description: 'Premium AI coach providing personalized advice and motivation throughout your journey.', color: 'from-yellow-500 to-amber-400' },
 ]
 
-export function Features() {
+export default function Features() {
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import { Users, Award, Sparkles, Clock } from 'lucide-react'
@@ -10,7 +10,7 @@ const stats = [
   { icon: Clock, value: '24/7', label: 'Support' },
 ]
 
-export function Stats() {
+export default function Stats() {
   return (
     <section className="py-20 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">

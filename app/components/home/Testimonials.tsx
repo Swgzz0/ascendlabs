@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
@@ -9,7 +9,7 @@ const testimonials = [
   { name: 'Marcus Rivera', role: 'Medical Student', content: 'Evidence-based advice with no fake promises. This is exactly what the self-improvement space needs.', rating: 5, avatar: 'https://i.pravatar.cc/100?img=3' },
 ]
 
-export function Testimonials() {
+export default function Testimonials() {
   return (
     <section className="py-20 px-6 bg-white/5">
       <div className="max-w-7xl mx-auto">
